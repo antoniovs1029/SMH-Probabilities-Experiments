@@ -5,7 +5,10 @@ Currently, this repository has only been tested in the **NIPS corpus** downloade
 To see an example, simply run the *demo.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities.
 
 # Installation and usage
-No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo.py*, and providing the adequate inputs (read below).
+No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo.py*, and providing the adequate inputs (read section below for inputs and outputs). In general only the following steps should be followed:
+1. Provide the adequate input
+2. Use a class from *probabilitiescreator.py* to generate a *topics distribution file* according to a desired method
+3. Use a class from *topicsprinters.py* to print readable files based on the *topics distribution file* created in the previous step.
 
 # Input and Output format and data
 Following the Sampled-Min-Hashing scheme, the following format is used for most input and output files in this repository. Files contain lists of elements, one list in each row. The first number in the row is the number of elements in that list, then it's followed by the elements, where the first number is an id and the second element is giving some information of the id (for example, frecuencies, weights or other info.):
