@@ -1,8 +1,11 @@
 I developed this code as part of my intership at the Institute of Research in Applied Mathematics and Systems (IIMAS)  at UNAM (México). It is supposed to work over the output gotten from the [Sampled-Min-Hashing](https://github.com/gibranfp/Sampled-MinHashing) tool created previously at the institute. The mentioned tool mines a given corpus and find several topics, where each topic is a set of words. The purpose of this repository is to experiment different ideas to assign probabilities to these words, so as to have a way to order them; for example, to know which words are more relevant, and the like.
 
-Currently, this repository has only been tested in the **NIPS corpus** downloaded from knowceans, as done in the Sampled-Min-Hashing repository. The mentioned download includes files such as *nips.vocab* (the vocabulary of the corpus) and *nips.corpus* (which includes a bag of words representation of the documents). After running SMH over those files, other files are created such as *nips.models* (which includes the mined topics) and *nips.ifs* (the inverted index of nips.corpus). With all these files, and the code in this repository, other files are created representing the probability distributions of the topics.
+Currently, this repository has only been tested in the **NIPS corpus** downloaded from knowceans, as done in the Sampled-Min-Hashing repository. The mentioned download includes files such as *nips.vocab* (the vocabulary of the corpus) and *nips.corpus* (which includes a bag of words representation of the documents). After running SMH over those files, other files are created such as *nips.models* (which includes the mined topics) and *nips.ifs* (the inverted index of *nips.corpus*). With all these files, and the code in this repository, other files are created representing the probability distributions of the topics.
 
-To see an example, simply run the *demo.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to checkout the methods use to assign probabilities.
+To see an example, simply run the *demo.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities.
+
+# Installation and usage
+No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo.py*, and providing the adequate inputs (read below).
 
 # Input and Output format and data
 Following the Sampled-Min-Hashing scheme, the following format is used for most input and output files in this repository. Files contain lists of elements, one list in each row. The first number in the row is the number of elements in that list, then it's followed by the elements, where the first number is an id and the second element is giving some information of the id (for example, frecuencies, weights or other info.):
@@ -15,7 +18,7 @@ Following the Sampled-Min-Hashing scheme, the following format is used for most 
 ~~~~
 
 ## Inputs
-+ **Vocabulary Frecuencies Numpy Array** - an numpy array where the i-th element has the frecuency of the word with id #i. For *demo.py*, this array is created from the previously downloaded *nips.vocab* file.
++ **Vocabulary Frecuencies Numpy Array** - a numpy array where the i-th element has the frecuency of the word with id #i. For *demo.py*, this array is created from the previously downloaded *nips.vocab* file.
 + **Vocabulary Words List** - a python list where the i-th element has the string of the word with id #i. For the *demo.py* this list is created from the *nips.vocab* file.
 + **Topics file** - a file using the mentioned format, where each line is a topic, and each element is a word in the topic. After using the  Sampled-Min-Hashing tool, this is the *nips.models* file.
 
@@ -33,7 +36,7 @@ The idea of the repository is to explore different methods of assigning probabil
 # Future Work
 ## Methods Ideas
 + One approach is to think that only documents that contain 'm' words of a given topic are related to this topic. The user shall indicate the 'm' parameter, and then all the documents associated with a topic should be found. Later, probabilities could be calculated, by only looking at the subset of the corpus formed by the documents associated with a topic.
-+ Similar to the approach of the previous point, is to make tuples pairing the words that belong to a topic, and finding the intersection of the set of documents in which they appear. This should be repeated for every posible pairing of words. Then a parameter 'p' should be selected by the user, to select the documents that appear in p% of the pairs. This might be computationally heavy, depending on the topics sizes.
++ Similar to the approach of the previous point, is to make duples pairing the words that belong to a topic, and finding the intersection of the sets of documents in which they appear. This should be repeated for every posible pairing of words. Then a parameter 'p' should be selected by the user, to select the documents that appear in p% of the pairs. This might be computationally heavy, depending on the topics sizes.
 + Another idea is to somehow include weights such as the tf-idf or the number of collisions that occured during the SMH with each word of a topic, in order to get the probabilities.
 
 ## Others
