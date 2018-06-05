@@ -34,7 +34,7 @@ The module *topicsprinter.py* includes different classes for printing the topics
 
 # Implemented Methods
 The idea of the repository is to explore different methods of assigning probabilities to the words given the topic. Currently there is only one implemented method.
-+ **Method 1** - Assigns probabilities by assuming that all occurrences of the word in the corpus are produced by a given topic. This is somewhat a loose assumption, as it implies that every document where a word appears is associated with every topic that contains the word. Future methods shall take into account that not every document is related to the topic.
++ **Method 1** - Assigns probabilities by assuming that all occurrences of the word in the corpus are produced by a given topic. This is somewhat a loose assumption, as it implies that every document where a given word appears is associated with every topic that contains such word. Future methods shall take into account that not every document is related to the topic.
 
 # Future Work
 ## Methods Ideas
@@ -45,5 +45,5 @@ The idea of the repository is to explore different methods of assigning probabil
 ## Others
 + Add output to binary files using Pickle, to save the probabilities distributions
 + Add more automatic statistics generators, such as: number of topics where a given word appears, number of words from the original vocabulary that doesn't appear in any topic, number of documents associated with a given topic, number of documents in which a word appears, largest topic, etc ...
-+ Find a way to select which documents are associated with a topic
++ Find a way to select which documents are associated with a topic. Probably using a metric to find the distance between a document and a topic (thinking both as tuple of words); and then using this metric to find a vectorial representation of the document based on its distances to the topics.
 + Create more interactive visualizations to work with the mined topics, and to compare them.
