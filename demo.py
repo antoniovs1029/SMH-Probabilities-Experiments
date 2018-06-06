@@ -2,9 +2,8 @@ from othertools import NipsVocabParser
 from probabilitiescreator import Method1
 from topicsprinters import MultipleFilesPrinter, SingleFileSummaryPrinter
 
-inputdir = "/home/antonio/ServicioSocial/3_programas-originales/knowceans-ilda/nips/"
-vocabfile = inputdir + "nips.vocab"
-topicsfile = inputdir + "nips.models"
+vocabfile = "./input/nips/nips.vocab"
+topicsfile = "./input/v1/nips.models"
 
 # Step 1: Create frecuencies and words arrays
 getvocab = NipsVocabParser(vocabfile)
