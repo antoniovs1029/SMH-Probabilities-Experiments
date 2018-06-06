@@ -1,4 +1,4 @@
-from othertools import NipsVocabParser
+from othertools import nips_get_vocab_frecuencies, nips_get_vocab_words
 from probabilitiescreator import Method1
 from topicsprinters import MultipleFilesPrinter, SingleFileSummaryPrinter
 
@@ -6,9 +6,8 @@ vocabfile = "./input/nips/nips.vocab"
 topicsfile = "./input/v1/nips.models"
 
 # Step 1: Create frecuencies and words arrays
-getvocab = NipsVocabParser(vocabfile)
-vocab_frecs = getvocab.get_vocab_frecuencies()
-vocab_words = getvocab.get_vocab_words()
+vocab_frecs = nips_get_vocab_frecuencies(vocabfile)
+vocab_words = nips_get_vocab_words(vocabfile)
 print(vocab_frecs[0:10])
 print(vocab_words[0:10])
 
