@@ -1,6 +1,11 @@
-from othertools import nips_get_vocab_frecuencies, nips_get_vocab_words
-from probabilitiescreator import Method1
-from topicsprinters import MultipleFilesPrinter, SingleFileSummaryPrinter
+"""
+In this demo I show the general usage of the tools in this repository, to get the topics with probabilities distributions
+using method1.
+"""
+
+from modulos.othertools import nips_get_vocab_frecuencies, nips_get_vocab_words
+from modulos.probabilitiescreator import Method1
+from modulos.topicsprinters import MultipleFilesPrinter, SingleFileSummaryPrinter
 
 vocabfile = "./input/nips/nips.vocab"
 topicsfile = "./input/v1/nips.models"
