@@ -5,8 +5,69 @@
 """
 Defines multiple ways to print easy-to-read files
 for the topics and their assigned probability distributions
-created by the probabilitiescreator module
+created by the probabilitiescreator module. As well as
+other kind of lists, such as the list of documents related to
+a topic.
 """
+
+class SingleFileDocumentsPrinter:
+    """
+    Prints a file with the the top documents related with a printer.
+    Along with the % of words of the topic that appear in the document.
+    """
+    def __init__(self, tdfile, topicsfile, docnamesfile):
+        """
+        Construct a new SingleFileDocumentsPrinter object
+
+        :param tdile: list of documents related to a topic
+        :param topicsfile: list of words related to a topic
+        :param docnamesfile: names of the documents
+        :param outputfile: path of the file where to print the documents titles  
+        """
+        self._tdfile = tdfile
+        self._topicsfile = topicsfile
+        self._docnamesfile = docnamesfile
+
+    def print_file(self, outputfile, n = 5):
+        """
+        Prints the titles of the documents to the outputfile
+        :param outputfile: string to the path of the file where to print the
+        titles
+        """
+        
+        # For faster retrieval, the names of the docs are load into memory first
+        docnames = []
+        with open(self._docnamesfile, "r") as dnf:
+            for line in dnf:
+                docnames.append(line[:-1]) #take out the last character ("\n")
+
+        with open(outputfile, "w") as out:
+            pass # TODO: Find a better way to erase a file if it exists
+
+        with open(self._topicsfile, "r") as tpf:
+            with open(self._tdfile, "r") as tdf:
+                for i, line in enumerate(tdf):
+                    words_in_topic = int(tpf.readline().split(" ")[0])
+                    line = line.split(" ")
+                    docs_number = line[0]
+                    docs = line[1:min(len(line),n)] # in case n is bigger 
+                                # than the number of
+                                # documents
+
+                    with open(outputfile, "a") as out:
+                        out.write("Topic #" + str(i) +": - with " + \
+                                    str(docs_number) + " related documents and " +\
+                                    str(words_in_topic) + " words\n")
+                        
+                        for doc in docs:
+                            doc, count = doc.split(":")
+                            doc = int(doc)
+                            count = int(count)
+
+                            percent = (count / words_in_topic)*100
+                            out.write(docnames[doc] + ' %.2f'%percent + "%\n")
+
+                        out.write("\n")
 
 class MultipleFilesPrinter:
     """
