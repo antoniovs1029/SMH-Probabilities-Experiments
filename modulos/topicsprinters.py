@@ -75,7 +75,7 @@ class MultipleFilesPrinter:
     the words of the topic sorted by probability, their probability and other
     statistics.
     """
-    def __init__(self, topicprobsfile, vocab_words, outputpath):
+    def __init__(self, topicprobsfile, vocab_words, outputpath, invwordtopics = None):
         """
         Construct a new MultipleFilesPrinter object
         :param topicprobsfile: file containing the probabilities, it is the
@@ -86,11 +86,15 @@ class MultipleFilesPrinter:
 
         :param outputpath: string path where the topics files should be written
 
+        :param invwordtopics: Optional. string path to the file where the i-th
+        line has a list of the topics where the i-th word appears.
+
         :return: returns nothing
         """
         self.topicprobsfile = topicprobsfile        
         self.outputpath = outputpath
         self.vocab_words = vocab_words
+        self.invwordtopics = invwordtopics
 
     def print_topics(self, maxtopics = None):
         """
@@ -100,6 +104,18 @@ class MultipleFilesPrinter:
 
         :return: returns nothing
         """
+
+        # If there's a file where to find the list of topics related to a word:
+        # Load it in memory:
+        if self.invwordtopics is not None:
+            self.iwt = [] # number of topics related to each word
+            with open(self.invwordtopics, "r") as f:
+                for line in f:
+                    self.iwt.append(int(line.split(" ")[0])) # the first element
+                                                             # in the line is the
+                                                             # number of elements
+                                                             # in the line
+
         self._prepare_output_path()
         with open(self.topicprobsfile, 'r') as f:
             for i,topic in enumerate(f):
@@ -112,8 +128,17 @@ class MultipleFilesPrinter:
             outfile.write(str(i) + ' - # Words: ' + str(topic[0]) + '\n')
             for x in topic[1:]:
                 word_id, word_prob = x.split(":")
-                outfile.write(str(self.vocab_words[int(word_id)]) + " - " + \
-                                                              str(word_prob))
+                ntopics = "?"
+                if self.invwordtopics is not None:
+                    ntopics = self.iwt[int(word_id)]
+                    ntopics = str(ntopics)
+
+                outfile.write(str(\
+                    self.vocab_words[int(word_id)]) + \
+                    " (id: " + word_id + "," +\
+                    " # topics: " + ntopics + ")"\
+                    " - Prob: " + \
+                    str(word_prob))
                 outfile.write('\n')
             outfile.write("\n")
 

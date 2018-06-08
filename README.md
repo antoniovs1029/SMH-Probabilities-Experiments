@@ -2,10 +2,10 @@ I developed this code as part of my intership at the Institute of Research in Ap
 
 Currently, this repository has only been tested in the **NIPS corpus** downloaded from knowceans, as done in the Sampled-Min-Hashing repository. The mentioned download includes files such as *nips.vocab* (the vocabulary of the corpus) and *nips.corpus* (which includes a bag of words representation of the documents). After running SMH over those files, other files are created such as *nips.models* (which includes the mined topics) and *nips.ifs* (the inverted index of *nips.corpus*). With all these files, and the code in this repository, other files are created representing the probability distributions of the topics.
 
-To see an example, simply run the *demo.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities.
+To see an example, simply run the *demo1.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities.
 
 # Installation and usage
-No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo.py*, and providing the adequate inputs (read section below for inputs and outputs). In general only the following steps should be followed:
+No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo1.py*, and providing the adequate inputs (read section below for inputs and outputs). In general only the following steps should be followed:
 1. Provide the adequate input
 2. Use a class from *probabilitiescreator.py* to generate a *topics distribution file* according to a desired method
 3. Use a class from *topicsprinters.py* to print readable files based on the *topics distribution file* created in the previous step.
@@ -21,9 +21,10 @@ Following the Sampled-Min-Hashing scheme, the following format is used for most 
 ~~~~
 
 ## Inputs
-+ **Vocabulary Frecuencies Numpy Array** - a numpy array where the i-th element has the frecuency of the word with id #i. For *demo.py*, this array is created from the previously downloaded *nips.vocab* file.
-+ **Vocabulary Words List** - a python list where the i-th element has the string of the word with id #i. For the *demo.py* this list is created from the *nips.vocab* file.
++ **Vocabulary Frecuencies Numpy Array** - a numpy array where the i-th element has the frecuency of the word with id #i. For *demo1.py*, this array is created from the previously downloaded *nips.vocab* file.
++ **Vocabulary Words List** - a python list where the i-th element has the string of the word with id #i. For the *demo1.py* this list is created from the *nips.vocab* file.
 + **Topics file** - a file using the mentioned format, where each line is a topic, and each element is a word in the topic. After using the  Sampled-Min-Hashing tool, this is the *nips.models* file.
++ **Word's topic list** - a file generated using the ifs command of the SMH Tool, over the nips.models file, to get a list of all the topics related to each word.
 
 ## Output and printers
 + **Topics distributions file** - a file using the mentioned format, where each line is a topic, and each element is a word in the topic, followed by their probability given the topic. The words are sorted by probability. By default, the extension of this file is *.probs*
@@ -31,7 +32,7 @@ Following the Sampled-Min-Hashing scheme, the following format is used for most 
 The module *topicsprinter.py* includes different classes for printing the topics distributions file:
 + **Multiple Files Printer** - Prints a file for each topic, listing the words of the topic sorted by their probabilities, and adding some other statistics.
 + **Single File Summary Printer** - Prints a file with a summary of all topics; that is, a list of the top words of each topic and some statistics.
-
++ **
 # Implemented Methods
 The idea of the repository is to explore different methods of assigning probabilities to the words given the topic. Currently there is only one implemented method.
 + **Method 1** - Assigns probabilities by assuming that all occurrences of the word in the corpus are produced by a given topic. This is somewhat a loose assumption, as it implies that every document where a given word appears is associated with every topic that contains such word. Future methods shall take into account that not every document is related to the topic.

@@ -20,14 +20,15 @@ print(vocab_frecs[0:10])
 print(vocab_words[0:10])
 
 # Step 2: Try out a method to assign probabilities
-probs_path = './out/method1/method1.probs.pickle'
+probs_path = './out/method1/method1.probs.txt'
 m1 = Method1(topicsfile, vocab_frecs, outputfile = probs_path)
 m1.run()
 
 # Step 3: Print the topics
 # In different files:
 mfp1 = MultipleFilesPrinter(probs_path, vocab_words,
-                            "./out/method1/method1distribs/")
+                            "./out/method1/method1distribs/",
+                            invwordtopics = "./input/v1/mios/nips.inverted_models")
 mfp1.print_topics()
 
 # In one summary file:
