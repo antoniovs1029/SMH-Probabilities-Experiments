@@ -33,7 +33,7 @@ def nips_get_vocab_words(vocabfile):
 
 def create_topics_documents1(topicsfile, invcorpusfile, tdfile):
     """
-    Get a list of documents related to each topic.
+    Prints a file with the list of documents related to each topic.
     To do that, for every word of the topic, add any document where
     that word appears. Even more, put the number of distinct words
     that appear in the document, and that are part of each topic.
