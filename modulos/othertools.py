@@ -31,7 +31,7 @@ def nips_get_vocab_words(vocabfile):
             words.append(line.split(" ")[0])
     return words
 
-def create_topics_documents1(topicsfile, invcorpusfile, tdfile):
+def create_topics_documents(topicsfile, invcorpusfile, tdfile):
     """
     Prints a file with the list of documents related to each topic.
     To do that, for every word of the topic, add any document where
