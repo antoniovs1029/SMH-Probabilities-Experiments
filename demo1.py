@@ -30,7 +30,7 @@ print(vocab_words[0:10])
 i += 1
 print("STEP ", i)
 
-topicdistribfile = './out/method1/method1.probs.txt'
+topicdistribfile = './out/v1/method1/method1.probs.txt'
 m1 = Method1(topicsfile, vocab_frecs, outputfile = topicdistribfile)
 m1.run()
 
@@ -42,8 +42,8 @@ tdp = TopicsDistributionPrinter(topicdistribfile,
                                 vocab_words,
                                 invwordtopics = "./input/v1/mios/nips.inverted_models")
 
-tdp.print_topics_summary("./out/method1/method1.summary.txt", maxwords = 10)
-tdp.print_multiple_files("./out/method1/method1distribs/")
+tdp.print_topics_summary("./out/v1/method1/method1.summary.txt", maxwords = 10)
+tdp.print_multiple_files("./out/v1/method1/method1distribs/")
 
 
 # Step 4: To gain more insight, get the documents related to each topic,
@@ -63,7 +63,7 @@ docnamesfile = "./input/nips/nips.docs2" # tuve que crear el .docs2 porque el or
                                         # estaba corrompido y no era utf8
 
 docprinter = DocumentsPrinter(tdfile, topicsfile, docnamesfile)
-docprinter.print_summary_file("./out/method1/documents_by_topic.txt" , n = 10)
-docprinter.print_multiple_files("./out/method1/method1distribs/")
+docprinter.print_summary_file("./out/v1/method1/documents_by_topic.txt" , n = 10)
+docprinter.print_multiple_files("./out/v1/method1/method1distribs/")
 
 print("END")

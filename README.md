@@ -37,12 +37,13 @@ The module *printers.py* includes different classes for printing the topics dist
 # Implemented Methods
 The idea of the repository is to explore different methods of assigning probabilities to the words given the topic. Currently there is only one implemented method.
 + **Method 1** - Assigns probabilities by assuming that all occurrences of the word in the corpus are produced by a given topic. This is somewhat a loose assumption, as it implies that every document where a given word appears is associated with every topic that contains such word. Future methods shall take into account that not every document is related to the topic.
++ **Method 2** - First select a subset of the corpus as the "documents related to a topic". Then calculate the frequencies of the words in a topic, but only on the corresponding documents. To select the subset of documents two approaches are providad: **Approach 2a** let the user set a percentage p%, if a document has equal or more than *p*% words of the topic, then the document is considered as related to the topic. **Approach 2b** let the user set a minimum of words *mw*, if a document has equal or more than *mw* words of the topic, then the document is considered as related to the topic. After using one of those approaches with high *p* or *mw*, then it might happen that no document is related to a topic, in such a case, then no word is related to the topic either.
 
 # Future Work
 ## Methods Ideas
-+ One approach is to think that only documents that contain 'm' words of a given topic are related to this topic. The user shall indicate the 'm' parameter, and then all the documents associated with a topic should be found. Later, probabilities could be calculated, by only looking at the subset of the corpus formed by the documents associated with a topic.
-+ Similar to the approach of the previous point, is to make duples pairing the words that belong to a topic, and finding the intersection of the sets of documents in which they appear. This should be repeated for every posible pairing of words. Then a parameter 'p' should be selected by the user, to select the documents that appear in p% of the pairs. This might be computationally heavy, depending on the topics sizes.
++ To make duples pairing the words that belong to a topic, and finding the intersection of the sets of documents in which they appear. This should be repeated for every posible pairing of words. Then a parameter 'p' should be selected by the user, to select the documents that appear in p% of the pairs. This might be computationally heavy, depending on the topics sizes.
 + Another idea is to somehow include weights such as the tf-idf or the number of collisions that occured during the SMH with each word of a topic, in order to get the probabilities.
++ Also, inspired in the Gibbs Sampler used in LDA, one could make a sampler which assign to words one of the topics in which they appear, based in a formula which takes into account that words of the same topic might appear in the same document. 
 
 ## Others
 + Improve Exception Handling

@@ -66,23 +66,29 @@ class DocumentsPrinter:
                 for i, line in enumerate(tdf):
                     words_in_topic = int(tpf.readline().split(" ")[0])
                     line = line.split(" ")
-                    docs_number = line[0]
+                    docs_number = int(line[0])
                     docs = line[1:min(len(line),n)] # in case n is bigger 
                                 # than the number of
                                 # documents
+
+                    # Warning: if docs_number == 0, then docs = ['\n'] ; remember this in
+                    # case of errors
 
                     with open(outputfile, "a") as out:
                         out.write("Topic #" + str(i) +": - with " + \
                                     str(docs_number) + " related documents and " +\
                                     str(words_in_topic) + " words\n")
                         
-                        for doc in docs:
-                            doc, count = doc.split(":")
-                            doc = int(doc)
-                            count = int(count)
+                        if docs_number == 0:
+                            out.write("No documents related to the topic!")
+                        else:
+                            for doc in docs:
+                                doc, count = doc.split(":")
+                                doc = int(doc)
+                                count = int(count)
 
-                            percent = (count / words_in_topic)*100
-                            out.write(docnames[doc] + ' %.2f'%percent + "%\n")
+                                percent = (count / words_in_topic)*100
+                                out.write(docnames[doc] + ' %.2f'%percent + "%\n")
 
                         out.write("\n")
 
@@ -111,7 +117,7 @@ class DocumentsPrinter:
 
                     words_in_topic = int(tpf.readline().split(" ")[0])
                     line = line.split(" ")
-                    docs_number = line[0]
+                    docs_number = int(line[0])
                     docs = line[1:]
 
                     outputfile = outputdir + "topic" + str(i) + "_documents.txt"
@@ -121,13 +127,16 @@ class DocumentsPrinter:
                                     str(docs_number) + " related documents and " +\
                                     str(words_in_topic) + " words\n")
                         
-                        for doc in docs:
-                            doc, count = doc.split(":")
-                            doc = int(doc)
-                            count = int(count)
+                        if docs_number == 0:
+                            out.write("No documents related to the topic!")
+                        else:
+                            for doc in docs:
+                                doc, count = doc.split(":")
+                                doc = int(doc)
+                                count = int(count)
 
-                            percent = (count / words_in_topic)*100
-                            out.write(docnames[doc] + ' %.2f'%percent + "%\n")
+                                percent = (count / words_in_topic)*100
+                                out.write(docnames[doc] + ' %.2f'%percent + "%\n")
 
                         out.write("\n")
 
