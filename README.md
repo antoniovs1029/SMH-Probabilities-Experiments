@@ -4,8 +4,8 @@ Currently, this repository has only been tested in the **NIPS corpus** downloade
 
 To see an example, simply run the *demo1.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities. Currently, the output looks like this:
 
-![Results](img/cap0.png?raw=true "Results")
-![Results](img/cap1.png?raw=true "Results")
+![Results](imgs/cap0.png?raw=true "Results")
+![Results](imgs/cap1.png?raw=true "Results")
 
 # Installation and usage
 No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo1.py*, and providing the adequate inputs (read section below for inputs and outputs). In general only the following steps should be followed:
