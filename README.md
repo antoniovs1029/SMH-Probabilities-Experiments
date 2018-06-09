@@ -2,7 +2,10 @@ I developed this code as part of my intership at the Institute of Research in Ap
 
 Currently, this repository has only been tested in the **NIPS corpus** downloaded from knowceans, as done in the Sampled-Min-Hashing repository. The mentioned download includes files such as *nips.vocab* (the vocabulary of the corpus) and *nips.corpus* (which includes a bag of words representation of the documents). After running SMH over those files, other files are created such as *nips.models* (which includes the mined topics) and *nips.ifs* (the inverted index of *nips.corpus*). With all these files, and the code in this repository, other files are created representing the probability distributions of the topics.
 
-To see an example, simply run the *demo1.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities.
+To see an example, simply run the *demo1.py* file, by indicating an inputpath where the nips.vocab and nips.models shall be located. Or check the *probabilitiescreator.py* to have a look to the methods used to assign probabilities. Currently, the output looks like this:
+
+![Results](img/cap0.png?raw=true "Results")
+![Results](img/cap1.png?raw=true "Results")
 
 # Installation and usage
 No installation is needed, and no command line interface is provided. The code should be downloaded, and then the tools can be used by following the example of *demo1.py*, and providing the adequate inputs (read section below for inputs and outputs). In general only the following steps should be followed:
@@ -29,10 +32,8 @@ Following the Sampled-Min-Hashing scheme, the following format is used for most 
 ## Output and printers
 + **Topics distributions file** - a file using the mentioned format, where each line is a topic, and each element is a word in the topic, followed by their probability given the topic. The words are sorted by probability. By default, the extension of this file is *.probs*
 
-The module *topicsprinter.py* includes different classes for printing the topics distributions file:
-+ **Multiple Files Printer** - Prints a file for each topic, listing the words of the topic sorted by their probabilities, and adding some other statistics.
-+ **Single File Summary Printer** - Prints a file with a summary of all topics; that is, a list of the top words of each topic and some statistics.
-+ **
+The module *printers.py* includes different classes for printing the topics distributions and the documents related to the topic.
+
 # Implemented Methods
 The idea of the repository is to explore different methods of assigning probabilities to the words given the topic. Currently there is only one implemented method.
 + **Method 1** - Assigns probabilities by assuming that all occurrences of the word in the corpus are produced by a given topic. This is somewhat a loose assumption, as it implies that every document where a given word appears is associated with every topic that contains such word. Future methods shall take into account that not every document is related to the topic.
