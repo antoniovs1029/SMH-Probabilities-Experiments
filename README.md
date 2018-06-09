@@ -44,6 +44,8 @@ The idea of the repository is to explore different methods of assigning probabil
 + Another idea is to somehow include weights such as the tf-idf or the number of collisions that occured during the SMH with each word of a topic, in order to get the probabilities.
 
 ## Others
++ Improve Exception Handling
++ Improve files and directories handling
 + Add output to binary files using Pickle, to save the probabilities distributions
 + Add more automatic statistics generators, such as: number of topics where a given word appears, number of words from the original vocabulary that doesn't appear in any topic, number of documents associated with a given topic, number of documents in which a word appears, largest topic, etc ...
 + Find a way to select which documents are associated with a topic. Probably using a metric to find the distance between a document and a topic (thinking both as tuple of words); and then using this metric to find a vectorial representation of the document based on its distances to the topics.

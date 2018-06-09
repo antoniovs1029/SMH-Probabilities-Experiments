@@ -24,7 +24,9 @@ vocab_words = nips_get_vocab_words(vocabfile)
 print(vocab_frecs[0:10])
 print(vocab_words[0:10])
 
-# Step 2: Try out a method to assign probabilities
+# Step 2: Use method1 to assign probabilities, printing them in the
+# method1.probs.txt file
+
 i += 1
 print("STEP ", i)
 
