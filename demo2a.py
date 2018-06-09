@@ -21,11 +21,11 @@ invwordtopics = "./input/v1/mios/nips.inverted_models"
 out_dir = "./out/v1/method2a/"
 tdfile = out_dir + "tdfile1.txt" # documents related to each topic
 new_tdfile = out_dir + "tdfile2.txt"
-occurrencesfile = out_dir + "occurrences.txt"
-topicdistribfile = out_dir + 'probs.txt'
+occurrencesfile = out_dir + "topics.occurrences.txt"
+topicdistribfile = out_dir + 'topics.probs.txt'
 topicprobsummary = out_dir + "topics.summary.txt"
 topicprobpath = out_dir + "topics/"
-docsummary = out_dir + "documents_by_topic.txt"
+docsummary = out_dir + "documents.summary.txt"
 docspath = out_dir + "topics/"
 
 
