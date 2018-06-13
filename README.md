@@ -59,6 +59,9 @@ The idea of the repository is to explore different methods of assigning probabil
 + **Method 1** - Assigns probabilities by assuming that all occurrences of the word in the corpus are produced by a given topic. This is somewhat a loose assumption, as it implies that every document where a given word appears is associated with every topic that contains such word. Future methods shall take into account that not every document is related to the topic.
 + **Method 2** - First select a subset of the corpus as the "documents related to a topic". Then calculate the frequencies of the words in a topic, but only on the corresponding documents. To select the subset of documents two approaches are provided: **Approach 2a** let the user set a percentage p%, if a document has equal or more than *p*% words of the topic, then the document is considered as related to the topic. **Approach 2b** let the user set a minimum of words *mw*, if a document has equal or more than *mw* words of the topic, then the document is considered as related to the topic. After using one of those approaches with high *p* or *mw*, then it might happen that no document is related to a topic, in such a case, then no word is related to the topic either.
 
+# Compare
+The *compare.py* script compares two probability distributions given to the same set of topics.
+
 # Future Work
 ## Methods Ideas
 + To make duples pairing the words that belong to a topic, and finding the intersection of the sets of documents in which they appear. This should be repeated for every posible pairing of words. Then a parameter 'p' should be selected by the user, to select the documents that appear in p% of the pairs. This might be computationally heavy, depending on the topics sizes.
