@@ -45,12 +45,15 @@ class Method1:
 
     def run(self):
         """
-        Runs the method1 to create the file containing the probabilities assignations
+        Runs the method1 to create the file containing the probabilities
+        assignations
+
         :return: returns nothing
         """
         with open(self.outputfile, 'w') as f:
             pass # Para borrar el archivo en caso de que exista
-        # TODO: Ver otra manera de crear archivos, y borrarlos en caso de que existan
+        # TODO: Ver otra manera de crear archivos, y borrarlos en caso de que
+        # existan
 
         with open(self.topicsfile, 'r') as f:
             for topic in f: # every line is a topic
@@ -87,7 +90,8 @@ class Method2:
     Thus, the probability that word 'w' appears given topic 't' is:
     p(w|t) = 
         (# of ocurrences of word 'w' in the topic's documents) /
-        (sum of all occurrences of every word in topic 't' in the topic's documents)
+        (sum of all occurrences of every word in topic 't' in the topic's
+        documents)
 
     """
     def __init__(self, topicsfile, tdfile, invcorpusfile):
@@ -214,8 +218,8 @@ class Method2:
                     if counter != 0:
                         proba = wc[1]/counter
                     else:
-                        proba = 0 # because if counter == 0, then every word should
-                                  # have probability = 0
+                        proba = 0 # because if counter == 0, then every word
+                                  # should have probability = 0
 
                     printstr += str(wc[0]) + ":" + str(proba)
                     if i != len(topic) - 1:
@@ -225,3 +229,49 @@ class Method2:
                     
                 with open(topicdistribfile, "a") as tdf:
                     tdf.write(printstr)
+
+class Method3:
+    """
+    This method assigns probabilities directly by using the weights obtained
+    with the Sampled MinHashing tool.
+    """
+
+    def __init__(self, topicsfile, outputpath):
+        """
+        :param topicsfile: a string with the path where the topics are found
+        :param outputpath: a string with the path where the output is going
+        to be printed.
+        :return: Returns Nothing
+        """
+        self._topicsfile = topicsfile
+        self._outputpath = outputpath
+        self._probsfile = outputpath + "topics.probs.txt"
+
+    def run(self):
+        """
+        Prints the probability distribution of each topic in a single file
+        "topics.probs.txt" inside the outputpath.
+
+        :return: Returns Nothing
+        """
+        with open(self._probsfile, "w") as pbf:
+            pass # TODO: Buscar una mejor manera de borrar un archivo si existe
+
+        with open(self._topicsfile, "r") as tpf:
+            for line in tpf:
+                topic = []
+                weightsum = 0
+                for elem in line.split(" ")[1:]:
+                    wid, weight = elem.split(":")
+                    wid = int(wid)
+                    weight = int(weight)
+                    topic.append((wid,weight))
+                    weightsum += weight
+
+                printstr = str(len(topic))
+                for elem in topic:
+                    printstr += " " + str(elem[0]) + ":" + str(elem[1]/weightsum)
+
+                printstr += "\n"
+                with open(self._probsfile, "a") as pbf:
+                    pbf.write(printstr)
